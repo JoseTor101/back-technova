@@ -9,11 +9,11 @@ $dbConn =  connect($db);
  */
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-    if (isset($_GET['id_computer']))
+    if (isset($_GET['id']))
     {
       //Mostrar un post
-      $sql = $dbConn->prepare("SELECT * FROM computer_category where id_computer=:id_computer");
-      $sql->bindValue(':id_computer', $_GET['id_computer']);
+      $sql = $dbConn->prepare("SELECT * FROM computer_category where id=:id");
+      $sql->bindValue(':id', $_GET['id']);
       $sql->execute();
       header("HTTP/1.1 200 OK");
       echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $postId = $dbConn->lastInsertId();
     if($postId)
     {
-      $input['id_computer'] = $postId;
+      $input['id'] = $postId;
       header("HTTP/1.1 200 OK");
       echo json_encode($input);
       exit();
@@ -52,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 //Borrar
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 {
-	$id = $_GET['id_computer'];
-  $statement = $dbConn->prepare("DELETE FROM computer_category where id_computer=:id_computer");
-  $statement->bindValue(':id_computer', $id);
+	$id = $_GET['id'];
+  $statement = $dbConn->prepare("DELETE FROM computer_category where id=:id");
+  $statement->bindValue(':id', $id);
   $statement->execute();
 	header("HTTP/1.1 200 OK");
 	exit();
@@ -63,12 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 if ($_SERVER['REQUEST_METHOD'] == 'PUT')
 {
     $input = $_GET;
-    $postId = $input['id_computer'];
+    $postId = $input['id'];
     $fields = getParams($input);
     $sql = "
           UPDATE computer_category
           SET $fields
-          WHERE id_computer='$postId'
+          WHERE id='$postId'
            ";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
