@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $input = $_POST;
     $sql = "INSERT INTO gadgets_category
-          (nombre, marca, descripcion, precio)
+          (nombre, marca, descripcion, precio, img)
           VALUES
-          (:nombre, :marca, :descripcion, :precio)";
+          (:nombre, :marca, :descripcion, :precio, :img)";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();

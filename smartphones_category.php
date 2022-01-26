@@ -1,5 +1,4 @@
 <?php
-//Buscar como agregar imágenes
 
 include "config.php";
 include "utils.php";
@@ -34,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $input = $_POST;
     $sql = "INSERT INTO smartphones_category
-          (nombre, marca, tamanio, modelo, ram, almacenamiento, camaras, procesador, sistema_operativo, bateria, precio)
+          (nombre, marca, tamanio, modelo, ram, almacenamiento, camaras, procesador, sistema_operativo, bateria, precio, img, descripcion)
           VALUES
-          (:nombre, :marca, :tamanio, :modelo,  :ram, :almacenamiento, :camaras, :procesador, :sistema_operativo, :bateria, :precio)";
+          (:nombre, :marca, :tamanio, :modelo,  :ram, :almacenamiento, :camaras, :procesador, :sistema_operativo, :bateria, :precio, :descripcion)";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();

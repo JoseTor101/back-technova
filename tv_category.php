@@ -1,5 +1,4 @@
-<?php
-//Buscar como agregar imágenes
+ <?php
 
 include "config.php";
 include "utils.php";
@@ -34,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $input = $_POST;
     $sql = "INSERT INTO tv_category
-          (nombre, marca, tamanio, modelo, smartTV)
+          (nombre, marca, tamanio, modelo, smartTV, precio, img, descripcion)
           VALUES
-          (:nombre, :marca, :tamanio, :modelo, :smartTV)";
+          (:nombre, :marca, :tamanio, :modelo, :smartTV, :precio, :img, :descripcion)";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();

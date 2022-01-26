@@ -1,5 +1,4 @@
 <?php
-//Buscar como agregar imágenes
 
 include "config.php";
 include "utils.php";
@@ -34,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $input = $_POST;
     $sql = "INSERT INTO computer_category
-          (nombre, marca, tamanio, modelo, ram, almacenamiento, tipo_disco, procesador, sistema_operativo, precio)
+          (nombre, marca, tamanio, modelo, ram, almacenamiento, tipo_disco, procesador, sistema_operativo, precio, img, descripcion)
           VALUES
-          (:nombre, :marca, :tamanio, :modelo,  :ram, :almacenamiento, :tipo_disco, :procesador, :sistema_operativo, :precio)";
+          (:nombre, :marca, :tamanio, :modelo,  :ram, :almacenamiento, :tipo_disco, :procesador, :sistema_operativo, :precio, :img, :descripcion)";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();
