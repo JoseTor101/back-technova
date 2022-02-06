@@ -1,7 +1,9 @@
  <?php
 
 include "config.php";
+include "cors.php";
 include "utils.php";
+
 $dbConn =  connect($db);
 /*
   listar todos los posts o solo uno
